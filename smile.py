@@ -9,7 +9,7 @@ import smiledataset
 run = wandb.init()
 config = run.config
 
-config.epochs=10
+config.epochs=100
 
 # load data
 train_X, train_y, test_X, test_y = smiledataset.load_data()
