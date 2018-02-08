@@ -41,9 +41,9 @@ for ii in range(train_X.shape[0]):
     edge_map = np.float32(255*edge_map /  np.max(edge_map))
     train_X_edge[ii,:,:,0] = edge_map
 train_X_temp = np.append(train_X,train_X_edge,axis=3)
-#train_X = train_X_temp
+train_X = train_X_temp
+# train_X = train_X_edge
 
-train_X = train_X_edge
 test_X_edge = test_X
 # Augment image with gradient map
 for ii in range(test_X.shape[0]):
@@ -52,8 +52,8 @@ for ii in range(test_X.shape[0]):
     edge_map = np.float32(255*edge_map /  np.max(edge_map))
     test_X_edge[ii,:,:,0] = edge_map
 test_X_temp = np.append(test_X,test_X_edge,axis=3)
-#test_X = test_X_temp
-test_X = test_X_edge
+test_X = test_X_temp
+# test_X = test_X_edge
 #Add train data
 
 train_X /= 255.0
