@@ -11,11 +11,11 @@ import cv2
 run = wandb.init()
 config = run.config
 
-config.epochs=100
-config.batch_size=32
+config.epochs=20
+config.batch_size=1
 config.first_layer_conv_width=5
 config.first_layer_conv_height=5
-config.dense_layer_size=64
+config.dense_layer_size=128
 config.dropout=0.25
 
 # load data
