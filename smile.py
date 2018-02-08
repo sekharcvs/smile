@@ -15,9 +15,7 @@ config.epochs=10
 config.first_layer_conv_width=5
 config.first_layer_conv_height=5
 config.dense_layer_size=128
-
-config.dropout=0.1
-config.nfeaturesConv=32
+config.dropout=0.2
 
 # load data
 train_X, train_y, test_X, test_y = smiledataset.load_data()
@@ -43,7 +41,7 @@ for ii in range(train_X.shape[0]):
     train_X_edge[ii,:,:,0] = edge_map
 train_X_temp = np.append(train_X,train_X_edge,axis=3)
 train_X = train_X_temp
-test_X_edge = test_X
+test_X_edge = test_X 
 
 # Augment image with gradient map
 for ii in range(test_X.shape[0]):
@@ -61,18 +59,17 @@ test_X /= 255.0
 print "%d" %config.first_layer_conv_width
 
 model = Sequential()
-model.add(Conv2D(config.nfeaturesConv,
+model.add(Conv2D(32,
     (config.first_layer_conv_width, config.first_layer_conv_height),
     input_shape=(32, 32, 2),
-    activation='softmax'))
-# model.add(Conv2D(config.nfeaturesConv,
-    # (config.first_layer_conv_width, config.first_layer_conv_height),
-    # input_shape=(32, 32, 32),
-    # activation='relu'))
-model.add(MaxPooling2D(pool_size=(1, 1)))
-model.add(Dropout(config.dropout))
+    activation='relu'))
+model.add(Conv2D(32,
+    (config.first_layer_conv_width, config.first_layer_conv_height),
+    input_shape=(32, 32, 32),
+    activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
-model.add(Dense(config.dense_layer_size, activation='softmax'))
+model.add(Dense(config.dense_layer_size, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam',
