@@ -63,7 +63,7 @@ print "%d" %config.first_layer_conv_width
 model = Sequential()
 model.add(Conv2D(config.nfeaturesConv,
     (config.first_layer_conv_width, config.first_layer_conv_height),
-    input_shape=(32, 32, 1),
+    input_shape=(32, 32, 2),
     activation='softmax'))
 # model.add(Conv2D(config.nfeaturesConv,
     # (config.first_layer_conv_width, config.first_layer_conv_height),
