@@ -16,7 +16,7 @@ config.batch_size=32
 config.first_layer_conv_width=5
 config.first_layer_conv_height=5
 config.dense_layer_size=256
-config.dropout=0.25
+config.dropout=0.1
 
 # load data
 train_X, train_y, test_X, test_y = smiledataset.load_data()
@@ -67,7 +67,7 @@ model.add(Conv2D(32,
     input_shape=(32, 32, 1),
     activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
+model.add(Dropout(config.dropout))
 #model.add(Conv2D(64,
 #    (config.first_layer_conv_width, config.first_layer_conv_height),
 #    input_shape=(16, 16, 64),
