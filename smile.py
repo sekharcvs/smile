@@ -15,8 +15,8 @@ config.epochs=100
 config.batch_size=32
 config.first_layer_conv_width=5
 config.first_layer_conv_height=5
-config.dense_layer_size=256
-config.dropout=0.1
+config.dense_layer_size=64
+config.dropout=0.25
 
 # load data
 train_X, train_y, test_X, test_y = smiledataset.load_data()
